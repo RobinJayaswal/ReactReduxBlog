@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import NavBar from './navbar';
 
 // example class based component (smart component)
 class App extends Component {
@@ -11,7 +12,8 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div id="app">
+        <NavBar />
         {this.props.children}
       </div>
     );
