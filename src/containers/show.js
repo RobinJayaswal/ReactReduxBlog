@@ -87,7 +87,7 @@ class Show extends React.Component {
   }
 
   updatePost() {
-    this.props.updatePost(this.props.params.id, { title: this.state.titleVal, content: this.state.contentVal, tags: this.state.titleVal });
+    this.props.updatePost(this.props.params.id, { title: this.state.titleVal, content: this.state.contentVal, tags: this.state.tagVal });
   }
 
   deletePost() {
