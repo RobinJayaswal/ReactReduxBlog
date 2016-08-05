@@ -1,6 +1,6 @@
 # React Redux Blog
 
-a couple sentence description about what you did
+## a couple sentence description about what you did
 
 For this project I created a React JS app with ReactRedux used to manage state. I set up reducers and actions to handle most of the api calls and state changes. 
 
