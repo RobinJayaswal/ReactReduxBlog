@@ -1,12 +1,12 @@
 # React Redux Blog
 
-## a couple sentence description about what you did
+## A couple sentence description about what you did
 
 For this project I created a React JS app with ReactRedux used to manage state. I set up reducers and actions to handle most of the api calls and state changes. 
 
 ## What Worked
 
-It all worked without many hiccups
+It all worked without many hiccups, except the historyApiFallback does not work with the deployment on Surge since we configured it only for the development server.
 
 ## Extra Credit
 
