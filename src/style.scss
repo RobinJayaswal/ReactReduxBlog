@@ -100,7 +100,11 @@ a {
     width: 100%;
     height: 30px;
     margin-bottom: 20px;
-
+    &.red {
+      input {
+        border: thin solid red;
+      }
+    }
     input {
       width: 100%;
       height: 100%;

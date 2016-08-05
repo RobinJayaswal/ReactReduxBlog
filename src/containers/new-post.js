@@ -39,6 +39,28 @@ class New extends React.Component {
   }
 
   onSubmit() {
+    if (this.state.title === '') {
+      this.setState({
+        showRed: 'title',
+      });
+      return;
+    }
+
+    if (this.state.tags === '') {
+      this.setState({
+        showRed: 'tags',
+      });
+      return;
+    }
+
+    if (this.state.content === '') {
+      this.setState({
+        showRed: 'content',
+      });
+      return;
+    }
+
+
     this.props.createPost({ title: this.state.title, tags: this.state.tags, content: this.state.content });
   }
 
@@ -52,13 +74,13 @@ class New extends React.Component {
         <div className="new-header">
           <span>Create A New Post</span>
         </div>
-        <div className="new-input-field">
+        <div className={`new-input-field ${this.state.showRed === 'title' ? 'red' : ''}`}>
           <input placeholder="title" value={this.state.title} onChange={this.onTitleChange} />
         </div>
-        <div className="new-input-field">
+        <div className={`new-input-field ${this.state.showRed === 'tags' ? 'red' : ''}`}>
           <input placeholder="tags" value={this.state.tags} onChange={this.onTagsChange} />
         </div>
-        <div className="new-input-field">
+        <div className={`new-input-field ${this.state.showRed === 'content' ? 'red' : ''}`}>
           <input placeholder="content" value={this.state.content} onChange={this.onContentChange} />
         </div>
         <div className="new-buttons-container">
