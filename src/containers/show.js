@@ -37,10 +37,17 @@ class Show extends React.Component {
 
   componentWillReceiveProps(newProps) {
     if (newProps.post) {
+      let tagStr = '';
+      if (newProps.post.tags) {
+        newProps.post.tags.forEach(tag => {
+          tagStr += `${tag} `;
+        });
+      }
       this.setState({
         titleVal: newProps.post.title,
-        tagVal: newProps.post.tags,
+        tagVal: tagStr,
         contentVal: newProps.post.content,
+        authorName: newProps.post.author.username,
       });
     }
   }
@@ -103,7 +110,7 @@ class Show extends React.Component {
   }
 
   render() {
-    let title, tags, content;
+    let title, tags, content, deleteButton;
 
     // return loading if we have not fetched post yet
     if (!this.props.post) {
@@ -112,7 +119,7 @@ class Show extends React.Component {
       );
     }
 
-    if (!this.state.isEditingTitle) {
+    if (!this.state.isEditingTitle || !this.props.authenticated) {
       title = (
         <div onClick={() => this.setState({ isEditingTitle: true, isEditingTags: false, isEditingContent: false })}>
           <span>{this.state.titleVal}</span>
@@ -124,7 +131,7 @@ class Show extends React.Component {
       );
     }
 
-    if (!this.state.isEditingTags) {
+    if (!this.state.isEditingTags || !this.props.authenticated) {
       tags = (
         <div onClick={() => this.setState({ isEditingTitle: false, isEditingTags: true, isEditingContent: false })}>
           <span>{this.state.tagVal}</span>
@@ -136,7 +143,7 @@ class Show extends React.Component {
       );
     }
 
-    if (!this.state.isEditingContent) {
+    if (!this.state.isEditingContent || !this.props.authenticated) {
       content = (
         <div onClick={() => this.setState({ isEditingTitle: false, isEditingTags: false, isEditingContent: true })}>
           <div className="note-body" dangerouslySetInnerHTML={this.createMarkup()} ref={(ref) => { this.noteContentsContainer = ref; }}></div>
@@ -147,19 +154,27 @@ class Show extends React.Component {
         <textarea onChange={this.onContentChange} value={this.state.contentVal} onBlur={this.setContent} autoFocus />
       );
     }
+
+    if (this.props.authenticated) {
+      deleteButton = (
+        <div className="delete-button" onClick={this.deletePost}>
+          <span>Delete</span>
+        </div>
+      );
+    }
     return (
       <div className="show-container">
         <div className="title-container">
           {title}
         </div>
+        <div className="author-container">
+          {`Author: ${this.state.authorName}`}
+        </div>
         {tags}
         <div className="content-container">
           {content}
         </div>
-
-        <div className="delete-button" onClick={this.deletePost}>
-          <span>Delete</span>
-        </div>
+        {deleteButton}
       </div>
     );
   }
@@ -169,6 +184,7 @@ class Show extends React.Component {
 const mapStateToProps = (state) => (
   {
     post: state.posts.post,
+    authenticated: state.auth.authenticated,
   }
 );
 
