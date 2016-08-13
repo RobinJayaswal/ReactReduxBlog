@@ -1,5 +1,5 @@
-// const ROOT_URL = 'https://redux-blog-authenticate.herokuapp.com/api';
-const ROOT_URL = 'http://localhost:9090/api';
+const ROOT_URL = 'https://redux-blog-authenticate.herokuapp.com/api';
+// const ROOT_URL = 'http://localhost:9090/api';
 // const ROOT_URL = 'http://redux-blog.herokuapp.com/api';
 // const ROOT_URL = 'https://cs52-blog.herokuapp.com/api';
 const API_KEY = '?key=r_jayaswal';
