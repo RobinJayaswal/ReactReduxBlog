@@ -39,7 +39,7 @@ class TagSearchBar extends React.Component {
       });
 
       const data = {
-        options: options.splice(0, 5),
+        options,
         complete: options.length <= 1,
       };
       setTimeout(() => {
